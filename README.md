@@ -7,9 +7,9 @@
 
   Front end assets were delivered with the task to connect the front and back end and deploy the application to Heroku.
 
-    ![Dashboard](Assets/notetaker.jpg)
+![Dashboard](Assets/notetaker.jpg)
 
-    ![Dashboard](Assets/11-express-homework-demo-02.png)
+![Dashboard](Assets/11-express-homework-demo-02.png)
 
   # Built With
     - HTML
@@ -23,8 +23,6 @@
   ## Deployment
 
   [Heroku](https://immense-stream-74139.herokuapp.com/)
-
-  [Github Pages](https://webprinc3ss.github.io/note-taker/)
     
   ## Questions
   Please feel free to contact me, webprinc3ss at Github: https://github.com/webprinc3ss 
