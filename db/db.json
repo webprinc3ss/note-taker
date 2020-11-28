@@ -1,7 +1,17 @@
 [
   {
-    "title": "Another note",
-    "text": "test test",
-    "id": "7c7e8ce3-bb4c-4cff-8d6a-80ca726c2543"
+    "title": "test",
+    "text": "test",
+    "id": "c0ce1ae5-3011-463f-81a7-0858caba1fe1"
+  },
+  {
+    "title": "Note",
+    "text": "Add note",
+    "id": "cae90318-ee80-42f0-83a7-69a67eb553c8"
+  },
+  {
+    "title": "Anotehr note",
+    "text": "Another note",
+    "id": "cf74c542-4d37-403f-bbe2-791ae62b1f99"
   }
 ]

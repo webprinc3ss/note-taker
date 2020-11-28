@@ -22,7 +22,7 @@ module.exports = function (app) {
             userNote.id = uuidv4();
             userArray.push(userNote); //push new note to json
 
-            fs.writeFile("db/db.json", JSON.stringify(userArray, null, 2), err => {
+            fs.writeFileSync("db/db.json", JSON.stringify(userArray, null, 2), err => {
                 if (err) throw err;
             });
         });
@@ -42,7 +42,7 @@ module.exports = function (app) {
                     res.json(notesArray.splice(i, 1));
                 }
             }
-            fs.writeFile("db/db.json", JSON.stringify(notesArray, null, 2), err => {
+            fs.writeFileSync("db/db.json", JSON.stringify(notesArray, null, 2), err => {
                 if (err) throw err;
                 console.log(`Deleted Note #${deleted}`)
             });
