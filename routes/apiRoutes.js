@@ -1,34 +1,53 @@
-const router = require('express').Router();
-const { filterByQuery, findById, createNewAnimal, validateAnimal } = require('../../lib/animals');
-const { animals } = require('../../data/animals');
+const fs = require("fs");
+const { v4: uuidv4 } = require('uuid')
 
-router.get('/animals', (req, res) => {
-    let results = animals;
-    if (req.query) {
-        results = filterByQuery(req.query, results);
-    }
-    res.json(results);
-});
+//exporting get/post/delete functionality
+module.exports = function (app) {
+    app.get("/api/notes", (req, res) => {
+        fs.readFile("db/db.json", (err, data) => {
+            if (err) throw err;
+            res.json(JSON.parse(data));
+        });
+    });
 
-router.get('/animals/:id', (req, res) => {
-    const result = findById(req.params.id, animals);
-    if (result) {
-        res.json(result);
-    } else {
-        res.send(404);
-    }
-});
+    //Create New Note
+    app.post("/api/notes", function (req, res) {
+        let userArray = [];
+        let userNote = req.body;
 
-router.post('/animals', (req, res) => {
-    // set id based on what the next index of the array will be
-    req.body.id = animals.length.toString();
+        fs.readFile("db/db.json", (err, data) => {
+            if (err) throw err;
+            userArray = JSON.parse(data);
+            //Give input an id
+            userNote.id = uuidv4();
+            userArray.push(userNote); //push new note to json
 
-    if (!validateAnimal(req.body)) {
-        res.status(400).send('The animal is not properly formatted.');
-    } else {
-        const animal = createNewAnimal(req.body, animals);
-        res.json(animal);
-    }
-});
+            fs.writeFile("db/db.json", JSON.stringify(userArray, null, 2), err => {
+                if (err) throw err;
+            });
+        });
+        res.json(userNote);
+    });
 
-module.exports = router;
+    //Delete Note
+    app.delete("/api/notes/:id", (req, res) => {
+        let deleted = req.params.id;
+
+        fs.readFile("db/db.json", (err, data) => {
+            if (err) throw err;
+            notesArray = JSON.parse(data);
+
+            for (let i = 0; i < notesArray.length; i++) {
+                if (deleted === notesArray[i].id) {
+                    res.json(notesArray.splice(i, 1));
+                }
+            }
+            fs.writeFile("db/db.json", JSON.stringify(notesArray, null, 2), err => {
+                if (err) throw err;
+                console.log(`Deleted Note #${deleted}`)
+            });
+        });
+    });
+};
+
+
