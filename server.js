@@ -15,6 +15,5 @@ app.use(express.json());
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-
 //Are you listening?
 app.listen(PORT, () => console.log(`API server now on port ${PORT}!`));

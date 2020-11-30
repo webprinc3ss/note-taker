@@ -14,7 +14,7 @@ module.exports = function (app) {
     app.post("/api/notes", function (req, res) {
         let userArray = [];
         let userNote = req.body;
-
+        // console.log(req.body)
         fs.readFile("db/db.json", (err, data) => {
             if (err) throw err;
             userArray = JSON.parse(data);
@@ -44,7 +44,7 @@ module.exports = function (app) {
             }
             fs.writeFileSync("db/db.json", JSON.stringify(notesArray, null, 2), err => {
                 if (err) throw err;
-                console.log(`Deleted Note #${deleted}`)
+                // console.log(`Deleted Note #${deleted}`)
             });
         });
     });
